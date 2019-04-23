@@ -3,16 +3,24 @@ LABEL image="openldap"
 LABEL versie="0.1"
 LABEL datum="2019 04 23"
 
+# install openldap
 RUN  apk update \
-  && apk add openldap-back-mdb \
   && apk add openldap \
+  && apk add openldap-back-mdb \
+  && apk add openldap-overlay-memberof \
+  && apk add openldap-overlay-refint \
   && rm -rf /var/cache/apk/*
 
+# prepare directories
 RUN mkdir -p /run/openldap \
-  && chown -R ldap.ldap /run/openldap
+  && mkdir -p /var/lib/openldap/openldap-data \
+  && mkdir -p /etc/openldap/slapd.d
 
-COPY modules/ /etc/openldap/modules
+# set configuration files
+COPY conf /etc/openldap
+COPY modules /etc/openldap/modules
 
+# copy script to configure openldap
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
