@@ -21,8 +21,8 @@ COPY conf /etc/openldap
 COPY modules /etc/openldap/modules
 
 # Backup configuration
-RUN mv /etc/openldap /etc/openldap.backup
-RUN mv /var/lib/openldap /var/lib/openldap.backup
+RUN cp -a /etc/openldap /etc/openldap.backup
+RUN cp -a /var/lib/openldap /var/lib/openldap.backup
 
 # copy script to configure openldap
 COPY entrypoint.sh /entrypoint.sh

@@ -5,8 +5,8 @@
 ulimit -n 8192
 
 # restore configuration
-mv /etc/openldap.backup/* /etc/openldap
-mv /var/lib/openldap.backup/* /var/lib/openldap
+cp -a /etc/openldap.backup /etc/openldap
+cp -a /var/lib/openldap.backup /var/lib/openldap
 
 set -e
 
