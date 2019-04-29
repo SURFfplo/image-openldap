@@ -13,7 +13,12 @@ set -e
 
 # ### 1: CONFIGURE ###
 # encrypt root password before replacing
-MY_PASSWORD=`cat $SLAPD_PASSWORD`
+#MY_PASSWORD=`cat $SLAPD_PASSWORD`
+MY_PASSWORD=PASSWORD
+if [ -f "$SLAPD_PASSWORD" ]
+then
+	$MY_PASSWORD = `cat $SLAPD_PASSWORD`
+fi
 MY_PASSWORD_ENC=$(slappasswd -s "$MY_PASSWORD")
 
 # replace variables in slapd.conf
