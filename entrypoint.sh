@@ -4,6 +4,10 @@
 # slapd is absurdly high. See https://github.com/docker/docker/issues/8231
 ulimit -n 8192
 
+# restore configuration
+mv /etc/openldap.backup/* /etc/openldap
+mv /var/lib/openldap.backup/* /var/lib/openldap
+
 set -e
 
 

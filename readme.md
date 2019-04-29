@@ -17,11 +17,13 @@ Dit script bouwt het image en gebruikt daarbij
 - conf/slapd.conf
 - modules/memberof.ldif & modules/refint.ldif
 
+Let op: op het eind wordt de configuratie gesaved die later (in entrypoint) gebruikt wordt om deze in een volume te plaatsen
 
 Entrypoint.sh
 -------------
 
 Dit script beschrijft de configuratie van openldap, deze was lastig... Dus lees even de comments in dit script voor de juiste volgorde. Komt hier op neer:
+- restore configuration uit build script
 - configureren van slapd.conf met onderstaande variabelen
 - permissies goed zetten
 - omzetten naar slapd.d formaat
