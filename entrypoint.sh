@@ -9,13 +9,14 @@ set -e
 
 # ### 1: CONFIGURE ###
 # encrypt root password before replacing
-SLAPD_PASSWORD_ENC=$(slappasswd -s "$SLAPD_PASSWORD")
+MY_PASSWORD=`cat $SLAPD_PASSWORD`
+MY_PASSWORD_ENC=$(slappasswd -s "$MY_PASSWORD")
 
 # replace variables in slapd.conf
 SLAPD_CONF="/etc/openldap/slapd.conf"
 sed -i "s~%SLAPD_DOMAIN%~$SLAPD_DOMAIN~g" "$SLAPD_CONF"
 sed -i "s~%SLAPD_USER%~$SLAPD_USER~g" "$SLAPD_CONF"
-sed -i "s~%SLAPD_PASSWORD%~$SLAPD_PASSWORD_ENC~g" "$SLAPD_CONF"
+sed -i "s~%SLAPD_PASSWORD%~$MY_PASSWORD_ENC~g" "$SLAPD_CONF"
 
 
 # ### 2: PERMISSIONS ###
