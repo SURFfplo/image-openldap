@@ -5,6 +5,8 @@
 ulimit -n 8192
 
 # restore configuration
+# remove olf config first, otherwise container does not restart...
+rm -rf /etc/openldap/*
 cp -a /etc/openldap.backup/* /etc/openldap
 cp -a /var/lib/openldap.backup/* /var/lib/openldap
 
